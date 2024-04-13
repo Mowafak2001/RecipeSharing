@@ -44,16 +44,17 @@ body, html {
 }
 
 .signup-form button {
-    width: calc(100% + 20px); 
+    width: calc(100% + 20px);
     height: 40px;
     border: none;
     background-color: #007bff;
     color: white;
     border-radius: 20px;
-    cursor: pointer;ф
-    margin-left: -10px; 
+    cursor: pointer;
+    margin-left: -10px;
     transition: background-color 0.3s ease;
 }
+
 
 .signup-form button:hover {
     background-color: #0056b3; 
