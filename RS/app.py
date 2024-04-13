@@ -29,6 +29,8 @@ def contact():
 def view_recipes():
     return render_template('recipes.html', recipes=recipes)
 
+#---------------------------------------------------------------------------------
+
 # Add a recipe
 @app.route('/add_recipe', methods=['GET', 'POST'])
 def add_recipe():
@@ -44,6 +46,8 @@ def add_recipe():
         else:
             return 'Error: Please provide name, ingredients, and instructions.'
     return render_template('add_recipe.html')
+
+#----------------------------------------------------------------------------------------------------------------------------
 
 # Edit a recipe
 @app.route('/edit_recipe/<int:recipe_id>', methods=['GET', 'POST'])
@@ -62,6 +66,8 @@ def edit_recipe(recipe_id):
 
     return render_template('edit_recipe.html', recipe=recipes[recipe_id], recipe_id=recipe_id)
 
+#------------------------------------------------------------------------------------------------------------------
+
 # View a recipe details
 @app.route('/recipe/<int:recipe_id>')
 def view_recipe(recipe_id):
@@ -69,11 +75,15 @@ def view_recipe(recipe_id):
         return 'Error: Recipe ID is invalid.'
     return render_template('recipe_details.html', recipe=recipes[recipe_id])
 
+#------------------------------------------------------------------------------------------------------------------
+
 # Remove a recipe
 @app.route('/remove_recipe/<int:recipe_id>')
 def remove_recipe(recipe_id):
     if recipe_id < 0 or recipe_id >= len(recipes):
         return 'Error: Recipe ID is invalid.'
+
+#---------------------------------------------------------------------------------------------------------------------
 
     del recipes[recipe_id]
     # Construct success message with links
@@ -81,6 +91,6 @@ def remove_recipe(recipe_id):
     return success_message
 
 
-#---------------------------------------------------------------------------------
+#---------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
     app.run(debug=True)
