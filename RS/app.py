@@ -40,9 +40,7 @@ def add_recipe():
             ingredients = request.form['ingredients']
             instructions = request.form['instructions']
             recipes.append({'name': name, 'ingredients': ingredients, 'instructions': instructions})
-            # Construct success message with links
-            success_message = 'Recipe added successfully! <a href="/">Home</a> | <a href="/recipes">View All Recipes</a>'
-            return success_message
+            return render_template('add_success_message.html')  # Render the success message template
         else:
             return 'Error: Please provide name, ingredients, and instructions.'
     return render_template('add_recipe.html')
@@ -87,7 +85,7 @@ def remove_recipe(recipe_id):
 
     del recipes[recipe_id]
     # Render the success message template
-    return render_template('success_message.html')
+    return render_template('remove_success_message.html')
 
 #---------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
