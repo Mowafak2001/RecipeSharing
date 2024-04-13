@@ -86,10 +86,8 @@ def remove_recipe(recipe_id):
 #---------------------------------------------------------------------------------------------------------------------
 
     del recipes[recipe_id]
-    # Construct success message with links
-    success_message = 'Recipe removed successfully! <a href="/">Home</a> | <a href="/recipes">View All Recipes</a>'
-    return success_message
-
+    # Render the success message template
+    return render_template('success_message.html')
 
 #---------------------------------------------------------------------------------------------------------------------
 if __name__ == '__main__':
