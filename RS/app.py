@@ -40,7 +40,7 @@ def add_recipe():
             ingredients = request.form['ingredients']
             instructions = request.form['instructions']
             recipes.append({'name': name, 'ingredients': ingredients, 'instructions': instructions})
-            return render_template('add_success_message.html')  # Render the success message template
+            return render_template('add_success_message.html')  # Render the add_success_message template
         else:
             return 'Error: Please provide name, ingredients, and instructions.'
     return render_template('add_recipe.html')
@@ -60,7 +60,7 @@ def edit_recipe(recipe_id):
             ingredients = request.form['ingredients']
             instructions = request.form['instructions']
             recipes[recipe_id] = {'name': name, 'ingredients': ingredients, 'instructions': instructions}
-            return 'Recipe edited successfully! <a href="/">Home</a> | <a href="/recipes">View All Recipes</a>'
+            return render_template('edit_success_message.html')  # Render the edit_success_message template
 
     return render_template('edit_recipe.html', recipe=recipes[recipe_id], recipe_id=recipe_id)
 
@@ -84,7 +84,7 @@ def remove_recipe(recipe_id):
 #---------------------------------------------------------------------------------------------------------------------
 
     del recipes[recipe_id]
-    # Render the success message template
+    # Render the remove_success_message template
     return render_template('remove_success_message.html')
 
 #---------------------------------------------------------------------------------------------------------------------
