@@ -8,6 +8,9 @@
 <body>
     <h1>Add Recipe</h1>
     <p><a href="/recipes">View All Recipes</a></p>
+    {% if error_message %}
+    <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
     <form action="/add_recipe" method="post">
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="name"><br>
