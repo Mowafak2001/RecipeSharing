@@ -23,6 +23,12 @@ def signup():
 def contact():
    
     return render_template('contactus.html')
+
+#--------------------------------------------------------------------------------
+@app.route('/aboutus')
+def aboutus():
+   
+    return render_template('aboutus.html')
 #--------------------------------------------------------------------------------
 # View all recipes
 @app.route('/recipes')
@@ -34,63 +40,38 @@ def view_recipes():
 # Add a recipe
 @app.route('/add_recipe', methods=['GET', 'POST'])
 def add_recipe():
-    # Initialize error and success messages
-    error_message = None
-    success_message = None
-    
-    # Handle POST request
+    error_message = None  # Initialize error message
     if request.method == 'POST':
-        # Retrieve form data
         name = request.form.get('name')
         ingredients = request.form.get('ingredients')
         instructions = request.form.get('instructions')
 
-        # Check if all fields are non-empty
-        if name and ingredients and instructions:
-            # Add recipe to the list
+        if name and ingredients and instructions:  # Ensure all fields are non-empty
             recipes.append({'name': name, 'ingredients': ingredients, 'instructions': instructions})
-            # Set success message
-            success_message = 'Recipe added successfully!'
+            return render_template('add_success_message.html')  # Render the add_success_message template
         else:
-            # Set error message if any field is empty
             error_message = 'Error: Please provide name, ingredients, and instructions.'
 
-    # Render template with error and success messages
-    return render_template('add_recipe.html', error_message=error_message, success_message=success_message)
+    return render_template('add_recipe.html', error_message=error_message)
 
 #----------------------------------------------------------------------------------------------------------------------------
 
 # Edit a recipe
 @app.route('/edit_recipe/<int:recipe_id>', methods=['GET', 'POST'])
 def edit_recipe(recipe_id):
-    # Initialize error and success messages
-    error_message = None
-    success_message = None
-
     # Check if the recipe_id is within the valid range
     if recipe_id < 0 or recipe_id >= len(recipes):
-        error_message = 'Error: Recipe ID is invalid.'
-        return render_template('edit_recipe.html', error_message=error_message, recipe_id=recipe_id)
+        return 'Error: Recipe ID is invalid.'
 
-    # Handle POST request
     if request.method == 'POST':
-        # Retrieve form data
-        name = request.form['name']
-        ingredients = request.form['ingredients']
-        instructions = request.form['instructions']
-        
-        # Check if all fields are non-empty
-        if name.strip() and ingredients.strip() and instructions.strip():
-            # Update the recipe with the new data
+        if 'name' in request.form and 'ingredients' in request.form and 'instructions' in request.form:
+            name = request.form['name']
+            ingredients = request.form['ingredients']
+            instructions = request.form['instructions']
             recipes[recipe_id] = {'name': name, 'ingredients': ingredients, 'instructions': instructions}
-            # Set success message
-            success_message = 'Recipe updated successfully!'
-        else:
-            # Set error message if any field is empty
-            error_message = 'Error: Please provide name, ingredients, and instructions.'
+            return render_template('edit_success_message.html')  # Render the edit_success_message template
 
-    # Render the edit recipe template with the recipe data, recipe ID, error message, and success message
-    return render_template('edit_recipe.html', recipe=recipes[recipe_id], recipe_id=recipe_id, error_message=error_message, success_message=success_message)
+    return render_template('edit_recipe.html', recipe=recipes[recipe_id], recipe_id=recipe_id)
 
 #------------------------------------------------------------------------------------------------------------------
 
