@@ -7,9 +7,12 @@
 </head>
 <body>
     <h1>Add Recipe</h1>
-    <p><a href="/recipes">View All Recipes</a></p>
+    <a href="/recipes" class="view-all-link">View All Recipes</a>
     {% if error_message %}
     <p style="color: red;">{{ error_message }}</p>
+    {% endif %}
+    {% if success_message %}
+    <p style="color: green;">{{ success_message }}</p>
     {% endif %}
     <form action="/add_recipe" method="post">
         <label for="name">Name:</label><br>
@@ -22,3 +25,5 @@
     </form>
 </body>
 </html>
+
+
