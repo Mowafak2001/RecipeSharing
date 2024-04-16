@@ -11,6 +11,9 @@
     {% if error_message %}
     <p style="color: red;">{{ error_message }}</p>
     {% endif %}
+    {% if success_message %}
+    <p style="color: green;">{{ success_message }}</p>
+    {% endif %}
     <form action="/add_recipe" method="post">
         <label for="name">Name:</label><br>
         <input type="text" id="name" name="name"><br>
@@ -22,3 +25,4 @@
     </form>
 </body>
 </html>
+
