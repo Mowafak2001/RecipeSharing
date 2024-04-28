@@ -10,3 +10,4 @@ venv/
 
 # Ignore system-specific files
 .DS_Store
+.DS_Store
