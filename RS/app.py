@@ -178,7 +178,14 @@ def view_recipe(recipe_id):
     if recipe_id < 0 or recipe_id >= len(recipes):
         return 'Error: Recipe ID is invalid.'
     return render_template('recipe_details.html', recipe=recipes[recipe_id])
-
+# Search for recipes
+@app.route('/search')
+def search():
+    query = request.args.get('query')
+    # Perform search logic here (e.g., filter recipes based on the query)
+    # For example, you could filter recipes whose names or ingredients contain the query
+    filtered_recipes = [recipe for recipe in recipes if query.lower() in recipe['name'].lower() or query.lower() in recipe['ingredients'].lower()]
+    return render_template('search_results.html', query=query, recipes=filtered_recipes)
 #------------------------------------------------------------------------------------------------------------------
 
 # Remove a recipe

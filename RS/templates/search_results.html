@@ -1,24 +1,12 @@
-{% include 'index.html' %}
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Recipes</title>
+    <title>Search Results</title>
 </head>
 <body>
-    <h1>All Recipes</h1>
-    
-    <!-- Search Form -->
-    <form action="/search" method="GET">
-        <label for="search">Search recipes:</label>
-        <input type="text" id="search" name="query">
-        <button type="submit">Search</button>
-    </form>
-    
-    <!-- Link to Add Recipe -->
-    <p><a href="/add_recipe">Add Recipe</a></p>
-    
+    <h1>Search Results for "{{ query }}"</h1>
     <ul>
         {% for recipe in recipes %}
         <li>
@@ -28,6 +16,6 @@
         </li>
         {% endfor %}
     </ul>
+    <p><a href="/recipes">Back to All Recipes</a></p>
 </body>
 </html>
-
