@@ -42,6 +42,36 @@ with app.app_context():
 #--------------------------------------------------------------------------
 # Dummy data for storing recipes (you can replace this with a database)
 recipes = []
+{
+        'name': 'Spaghetti Carbonara',
+        'ingredients': ['Spaghetti', 'Eggs', 'Bacon', 'Parmesan cheese', 'Black pepper'],
+        'instructions': ['Cook spaghetti according to package instructions.', 'Fry bacon until crispy.', 'Mix eggs, Parmesan cheese, and black pepper in a bowl.', 'Combine cooked spaghetti with bacon and egg mixture.', 'Serve hot and enjoy!']
+    },
+    # Add more recipes here
+# The code for `my_list` seems incomplete or unnecessary
+# my_list = [
+#     'item1',
+#     'item2',
+#     'item3',
+# ]
+
+# Missing closing bracket ']' in the comment
+
+
+# Define the route for viewing a single recipe
+@app.route('/recipe_details/<int:index>')
+def view_recipe_details(index):
+    # Assume index is the index of the recipe in the recipes list
+    if 0 <= index < len(recipes):
+        recipe = recipes[index]
+        return render_template('recipe.html', recipe=recipe)
+    else:
+        # Handle invalid recipe index
+        return 'Recipe not found', 404
+
+# Add other routes and functions below...
+
+#--------------------------------------------------------------------------
 
 @app.route('/')
 def index():

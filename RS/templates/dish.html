@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Dish Page</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<header>
+  <nav>
+    <!-- Navigation links -->
+  </nav>
+</header>
+
+<main class="container">
+  <section class="dish-details">
+    <h1 class="dish-name">Butter Chicken</h1>
+    <img class="dish-image" src="dish_image.jpg" alt="Butter Chicken">
+    <div class="dish-info">
+      <p><strong>Preparation Time:</strong> <span id="prep-time"></span></p>
+      <p><strong>Cuisine Type:</strong> <span id="cuisine-type"></span></p>
+    </div>
+  </section>
+
+  <section class="dish-ingredients">
+    <h2>Ingredients</h2>
+    <ul id="ingredients-list">
+      <!-- Ingredients will be dynamically added here -->
+    </ul>
+  </section>
+
+  <section class="dish-directions">
+    <h2>Directions</h2>
+    <ol id="directions-list">
+      <!-- Directions will be dynamically added here -->
+    </ol>
+  </section>
+
+  <section class="dish-comments">
+    <h2>Comments</h2>
+    <div class="comment-form">
+      <textarea id="comment-text" placeholder="Add a comment"></textarea>
+      <button onclick="postComment()">Post Comment</button>
+    </div>
+    <div class="comments-list" id="comments-list">
+      <!-- Comments will be dynamically added here -->
+    </div>
+  </section>
+</main>
+
+<footer>
+  <!-- Footer content -->
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>
+
+
