@@ -111,6 +111,7 @@ def view_recipes():
 @login_required
 def add_recipe():
     error_message = None
+    success_message = None
     if request.method == 'POST':
         name = request.form.get('name')
         ingredients = request.form.get('ingredients')
@@ -120,7 +121,7 @@ def add_recipe():
             new_recipe = Recipe(name=name, ingredients=ingredients, instructions=instructions)
             db.session.add(new_recipe)
             db.session.commit()
-            return render_template('add_success_message.html')
+            success_message = 'Recipe edited successfully!'
         else:
             error_message = 'Error: Please provide name, ingredients, and instructions.'
 
