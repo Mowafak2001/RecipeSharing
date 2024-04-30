@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, redirect, session, url_for,jsonify
+from flask import Flask, render_template, request, redirect, session, url_for, jsonify
 from flask_sqlalchemy import SQLAlchemy
 import os
 from functools import wraps
@@ -27,9 +27,9 @@ class ContactUs(db.Model):
 class Recipe(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), nullable=False)  # Add email field back to Recipe model
     ingredients = db.Column(db.Text, nullable=False)
     instructions = db.Column(db.Text, nullable=False)
-
 
 with app.app_context():
     db.create_all()
@@ -57,6 +57,7 @@ def signin():
         user = User.query.filter_by(email=email).first()
         if user and user.password == password:
             session['logged_in'] = True
+            session['email'] = email  # Set the email session variable
             return jsonify({'status': 'success', 'message': 'Login successful'})
         
         # If email or password is incorrect, render the signin page with an error message
@@ -69,6 +70,7 @@ def signin():
 @app.route('/logout')
 def logout():
     session.pop('logged_in', None)
+    session.pop('email', None)  # Remove the email session variable on logout
     return redirect(url_for('index'))
 
 @app.route('/signup', methods=['GET', 'POST'])
@@ -116,16 +118,19 @@ def add_recipe():
         name = request.form.get('name')
         ingredients = request.form.get('ingredients')
         instructions = request.form.get('instructions')
+        email = session.get('email')  # Get the email from the session
 
         if name and ingredients and instructions:
-            new_recipe = Recipe(name=name, ingredients=ingredients, instructions=instructions)
+            new_recipe = Recipe(name=name, email=email, ingredients=ingredients, instructions=instructions)
             db.session.add(new_recipe)
             db.session.commit()
-            success_message = 'Recipe edited successfully!'
+            success_message = 'Recipe added successfully!'
+            # Redirect to the recipe details page after adding the recipe
+            return redirect(url_for('view_recipe', recipe_id=new_recipe.id))
         else:
-            error_message = 'Error: Please provide name, ingredients, and instructions.'
+            error_message = 'Error: One or more fields are empty.'
 
-    return render_template('add_recipe.html', error_message=error_message)
+    return render_template('add_recipe.html', error_message=error_message, success_message=success_message)
 
 @app.route('/edit_recipe/<int:recipe_id>', methods=['GET', 'POST'])
 @login_required
@@ -174,4 +179,7 @@ def remove_recipe(recipe_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
 
