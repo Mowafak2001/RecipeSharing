@@ -138,6 +138,7 @@ def view_recipes():
 @app.route('/add_recipe', methods=['GET', 'POST'])
 def add_recipe():
     error_message = None  # Initialize error message
+    success_message = None
     if request.method == 'POST':
         name = request.form.get('name')
         ingredients = request.form.get('ingredients')
@@ -145,11 +146,11 @@ def add_recipe():
 
         if name and ingredients and instructions:  # Ensure all fields are non-empty
             recipes.append({'name': name, 'ingredients': ingredients, 'instructions': instructions})
-            return render_template('add_success_message.html')  # Render the add_success_message template
+            success_message = 'Recipe added successfully!'
         else:
             error_message = 'Error: Please provide name, ingredients, and instructions.'
 
-    return render_template('add_recipe.html', error_message=error_message)
+    return render_template('add_recipe.html', error_message=error_message, success_message=success_message)
 
 #----------------------------------------------------------------------------------------------------------------------------
 
