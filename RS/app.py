@@ -125,6 +125,15 @@ def aboutus():
    
     return render_template('aboutus.html')
 #--------------------------------------------------------------------------------
+@app.route('/homepage')
+def homepage():
+   
+    return render_template('homepage.html')
+@app.route('/')
+def home():
+   
+    return render_template('homepage.html')
+#--------------------------------------------------------------------------------
 # View all recipes
 @app.route('/recipes')
 @login_required
