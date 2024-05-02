@@ -113,7 +113,14 @@ def homepage():
 def view_recipes():
     recipes = Recipe.query.all()
     return render_template('recipes.html', recipes=recipes)
-
+#-----------------------------------------------------------------------------------------
+@app.route('/recipe/<int:recipe_id>')
+def view_recipe_detail(recipe_id):
+    recipe = Recipe.query.get(recipe_id)
+    if not recipe:
+        return render_template('error.html', message="Recipe not found.")
+    return render_template('recipe_details.html', recipe=recipe)
+#------------------------------------------------------------------------------------
 @app.route('/add_recipe', methods=['GET', 'POST'])
 @login_required
 def add_recipe():
@@ -129,9 +136,7 @@ def add_recipe():
             new_recipe = Recipe(name=name, email=email, ingredients=ingredients, instructions=instructions)
             db.session.add(new_recipe)
             db.session.commit()
-            success_message = 'Recipe added successfully!'
-            # Redirect to the recipe details page after adding the recipe
-            return redirect(url_for('view_recipe', recipe_id=new_recipe.id))
+            success_message = 'Recipe added successfully!'     
         else:
             error_message = 'Error: One or more fields are empty.'
 
@@ -158,13 +163,6 @@ def edit_recipe(recipe_id):
 
     return render_template('edit_recipe.html', recipe=recipe)
 
-@app.route('/recipe/<int:recipe_id>')
-def view_recipe(recipe_id):
-    recipe = Recipe.query.get(recipe_id)
-    if not recipe:
-        return 'Error: Recipe ID is invalid.'
-    return render_template('recipe_details.html', recipe=recipe)
-
 @app.route('/search')
 def search():
     query = request.args.get('query')
@@ -184,6 +182,9 @@ def remove_recipe(recipe_id):
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
 
 
 
