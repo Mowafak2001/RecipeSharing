@@ -142,26 +142,31 @@ def add_recipe():
 
     return render_template('add_recipe.html', error_message=error_message, success_message=success_message)
 
-@app.route('/edit_recipe/<int:recipe_id>', methods=['GET', 'POST'])
+@app.route('/edit_recipe/<int:recipe_id>', methods=['GET'])
+@login_required
+def edit_recipe_form(recipe_id):
+    recipe = Recipe.query.get_or_404(recipe_id)
+    return render_template('edit_recipe.html', recipe=recipe, recipe_id=recipe_id)
+
+@app.route('/edit_recipe/<int:recipe_id>', methods=['POST'])
 @login_required
 def edit_recipe(recipe_id):
-    recipe = Recipe.query.get(recipe_id)
-    if not recipe:
-        return 'Error: Recipe ID is invalid.'
+    # Fetch the recipe from the database using recipe_id
+    recipe = Recipe.query.get_or_404(recipe_id)
+    
+    # Update the recipe with the form data
+    recipe.name = request.form.get('name')
+    recipe.ingredients = request.form.get('ingredients')
+    recipe.instructions = request.form.get('instructions')
 
-    if request.method == 'POST':
-        name = request.form.get('name')
-        ingredients = request.form.get('ingredients')
-        instructions = request.form.get('instructions')
+    # Commit the changes to the database
+    db.session.commit()
 
-        if name and ingredients and instructions:
-            recipe.name = name
-            recipe.ingredients = ingredients
-            recipe.instructions = instructions
-            db.session.commit()
-            return render_template('edit_success_message.html')
+    # Redirect to a page displaying the edited recipe or to the list of all recipes
+    return redirect(url_for('view_recipes'))
 
-    return render_template('edit_recipe.html', recipe=recipe)
+
+
 
 @app.route('/search')
 def search():
