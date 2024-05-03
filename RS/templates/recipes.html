@@ -22,12 +22,13 @@
     <ul>
         {% for recipe in recipes %}
         <li>
-            <a href="/recipe/{{ loop.index0 }}">{{ recipe.name }}</a> - 
-            <a href="/edit_recipe/{{ loop.index0 }}">Edit</a> | 
-            <a href="/remove_recipe/{{ loop.index0 }}">Remove</a>
+            <a href="{{ url_for('view_recipe_detail', recipe_id=recipe.id) }}">{{ recipe.name }}</a> - 
+            <a href="/edit_recipe/{{ recipe.id }}">Edit</a> | 
+            <a href="/remove_recipe/{{ recipe.id }}">Remove</a>
         </li>
         {% endfor %}
     </ul>
 </body>
 </html>
+
 
