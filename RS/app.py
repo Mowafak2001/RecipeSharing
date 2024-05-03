@@ -166,8 +166,6 @@ def edit_recipe(recipe_id):
     return redirect(url_for('view_recipes'))
 
 
-
-
 @app.route('/search')
 def search():
     query = request.args.get('query')
