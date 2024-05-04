@@ -1,4 +1,4 @@
-{% include 'index.html' %}
+{% include 'index.html' %}  <!-- Including index.html template -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -42,7 +42,8 @@
     <ul>
         {% for recipe in recipes %}
         <li>
-            <a href="{{ url_for('view_recipe_detail', recipe_id=recipe.id) }}" class="recipe-name">{{ recipe.name }}</a> - 
+            <span class="recipe-name">{{ recipe.name }}</span> - 
+            <a href="{{ url_for('view_recipe_detail', recipe_id=recipe.id) }}" class="button">View</a> |
             <a href="/edit_recipe/{{ recipe.id }}" class="button">Edit</a> | 
             <a href="/remove_recipe/{{ recipe.id }}" class="button">Remove</a>
         </li>
@@ -50,6 +51,7 @@
     </ul>
 </body>
 </html>
+
 
 
 
