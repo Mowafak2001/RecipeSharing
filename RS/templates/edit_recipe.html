@@ -5,10 +5,25 @@
 <head>
     <link rel="stylesheet" href="/static/add_recipe.css">  <!-- Linking external CSS file -->
     <title>Edit Recipe</title>
+    <style>
+        /* CSS for button styling */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
     <h1>Edit Recipe</h1>
-    <p><a href="/recipes">View All Recipes</a></p>  <!-- Link to view all recipes -->
+    <p><a href="/recipes" class="button">View All Recipes</a></p>  <!-- Link to view all recipes styled as a button -->
     {% if error_message %}  <!-- If an error message exists -->
     <p style="color: red;">{{ error_message }}</p>  <!-- Display error message in red -->
     {% endif %}
@@ -26,5 +41,6 @@
     </form>
 </body>
 </html>
+
 
 
