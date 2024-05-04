@@ -12,6 +12,19 @@
         ol {
             list-style-type: decimal; /* Numbered bullet points for instructions */
         }
+        /* CSS for button styling */
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: #fff;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .button:hover {
+            background-color: #0056b3;
+        }
     </style>
 </head>
 <body>
@@ -30,7 +43,8 @@
             <li>{{ step }}</li>  <!-- Display each step as a numbered list item -->
         {% endfor %}
     </ol>
-    <p><a href="/recipes">Back to Recipes</a></p>  <!-- Link to go back to all recipes -->
+    <p><a href="/recipes" class="button">Back to Recipes</a></p>  <!-- Link to go back to all recipes styled as a button -->
 </body>
 </html>
+
 
