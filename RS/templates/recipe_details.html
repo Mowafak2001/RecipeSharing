@@ -25,6 +25,12 @@
         .button:hover {
             background-color: #0056b3;
         }
+
+        /* Add spacing between recipe buttons */
+        .recipe-buttons {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
     </style>
 </head>
 <body>
@@ -43,8 +49,16 @@
             <li>{{ step }}</li>  <!-- Display each step as a numbered list item -->
         {% endfor %}
     </ol>
+    <div class="recipe-buttons">
+        <!-- Buttons for viewing, editing, and removing recipes -->
+        <!-- Adjust the markup for these buttons according to your template -->
+        <button class="button">View</button>
+        <button class="button">Edit</button>
+        <button class="button">Remove</button>
+    </div>
     <p><a href="/recipes" class="button">Back to Recipes</a></p>  <!-- Link to go back to all recipes styled as a button -->
 </body>
 </html>
+
 
 
