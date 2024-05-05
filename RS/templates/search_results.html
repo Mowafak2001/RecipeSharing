@@ -1,22 +1,24 @@
-{% include 'index.html' %}
+{% include 'index.html' %}  <!-- Including index.html template -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Search Results</title>
+    <meta charset="UTF-8">  <!-- Declaring character set -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Setting viewport for responsive design -->
+    <title>Search Results</title>  <!-- Title of the page -->
 </head>
 <body>
-    <h1>Search Results for "{{ query }}"</h1>
+    <h1>Search Results for "{{ query }}"</h1>  <!-- Heading showing search query -->
     <ul>
-        {% for recipe in recipes %}
+        {% for recipe in recipes %}  <!-- Loop through each recipe -->
         <li>
-            <a href="/recipe/{{ loop.index0 }}">{{ recipe.name }}</a> - 
-            <a href="/edit_recipe/{{ loop.index0 }}">Edit</a> | 
-            <a href="/remove_recipe/{{ loop.index0 }}">Remove</a>
+            <a href="/recipe/{{ loop.index0 }}">{{ recipe.name }}</a> -  <!-- Link to view recipe details -->
+            <a href="/edit_recipe/{{ loop.index0 }}">Edit</a> |  <!-- Link to edit recipe -->
+            <a href="/remove_recipe/{{ loop.index0 }}">Remove</a>  <!-- Link to remove recipe -->
         </li>
         {% endfor %}
     </ul>
-    <p><a href="/recipes">Back to All Recipes</a></p>
+    <p><a href="/recipes">Back to All Recipes</a></p>  <!-- Link to go back to all recipes -->
 </body>
 </html>
+
