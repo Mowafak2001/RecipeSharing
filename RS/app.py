@@ -104,9 +104,23 @@ def signup():
     return render_template('signup.html')
 
 # Route: Contact Us (Accessible after login)
-@app.route('/contact')
+@app.route('/contact', methods=['GET', 'POST'])
 @login_required
 def contact():
+    if request.method == 'POST':
+        first_name = request.form['first_name']
+        last_name = request.form['last_name']
+        email = request.form['email']
+        reason = request.form['reason']
+
+        new_contact = ContactUs(first_name=first_name, last_name=last_name, email=email, reason=reason)
+        db.session.add(new_contact)
+        db.session.commit()
+        #flash('Your contact information has been submitted.','success')
+        #flash('Your contact information has been submitted.', 'success')
+        print(new_contact)
+        return redirect(url_for('contact'))
+    
     return render_template('contactus.html')
 
 # Route: About Us

@@ -8,17 +8,16 @@
       </head>
       
       <body>
-        <div class="signup-container"> <!-- Container for the signup form -->
-          <form class="signup-form"> <!-- Signup form -->
-              <h2>Contact Us</h2> <!-- Heading for the form -->
-            
-            <input type="text" placeholder="Full Name" required> <!-- Input field for full name -->
-            <input type="email" placeholder="Email" required>   <!-- Input field for email -->
-            <input type="text" placeholder="Reason to Contact" required> <!-- Input field for reason to contact -->
-
-            <button type="submit">submit</button> <!-- Submit button -->
+        <div class="signup-container">
+          <form class="signup-form" action="/contact" method="post">
+              <h2>Contact Us</h2>
+              <input type="text" name="first_name" placeholder="First Name" required>
+              <input type="text" name="last_name" placeholder="Last Name" required>
+              <input type="email" name="email" placeholder="Email" required>
+              <input type="text" name="reason" placeholder="Reason to Contact" required>
+              <button type="submit">Submit</button>
           </form>
-        </div>
+      </div>
       </body>
       
       </html>
