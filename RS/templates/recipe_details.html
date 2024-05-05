@@ -5,14 +5,48 @@
 <head>
     <title>{{ recipe.name }}</title>  <!-- Title of the recipe page -->
     <style>
-        /* CSS for styling the lists */
+        @import url('https://fonts.googleapis.com/css?family=Indie+Flower');
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: lightgoldenrodyellow;
+            font-family: 'Indie Flower', cursive;
+        }
+
+        .paper {
+            position: relative;
+            height: auto;
+            width: 80%;
+            background: rgba(255,255,255,0.9);
+            margin: 20px auto;
+            box-shadow: 0px 0px 5px 0px #888;
+            padding: 20px;
+        }
+
+        .lines {
+            background-image: repeating-linear-gradient(white 0px, white 24px, steelblue 25px);
+            padding: 20px;
+        }
+
+        .text {
+            line-height: 25px;
+            overflow: hidden;
+            outline: none;
+        }
+
+        ul, ol {
+            padding-left: 20px;
+        }
+
         ul {
             list-style-type: disc; /* Bullet points for ingredients */
         }
+        
         ol {
             list-style-type: decimal; /* Numbered bullet points for instructions */
         }
-        /* CSS for button styling */
+
         .button {
             display: inline-block;
             padding: 10px 20px;
@@ -26,7 +60,6 @@
             background-color: #0056b3;
         }
 
-        /* Add spacing between recipe buttons */
         .recipe-buttons {
             margin-top: 20px;
             margin-bottom: 20px;
@@ -34,26 +67,29 @@
     </style>
 </head>
 <body>
-    <h1>{{ recipe.name }}</h1>  <!-- Heading displaying the recipe name -->
-    <h2>Ingredients:</h2>  <!-- Subheading for ingredients -->
-    <!-- Display ingredients as bullet points -->
-    <ul>
-        {% for ingredient in recipe.ingredients.split('\n') %}
-            <li>{{ ingredient }}</li>  <!-- Display each ingredient as a list item -->
-        {% endfor %}
-    </ul>
-    <h2>Instructions:</h2>  <!-- Subheading for instructions -->
-    <!-- Display instructions as numbered bullet points -->
-    <ol>
-        {% for step in recipe.instructions.split('\n') %}
-            <li>{{ step }}</li>  <!-- Display each step as a numbered list item -->
-        {% endfor %}
-    </ol>
-    <div class="recipe-buttons">
+    <div class="paper">
+        <div class="lines">
+            <div class="text">
+                <h1>{{ recipe.name }}</h1>  <!-- Heading displaying the recipe name -->
+                <h2>Ingredients:</h2>  <!-- Subheading for ingredients -->
+                <!-- Display ingredients as bullet points -->
+                <ul>
+                    {% for ingredient in recipe.ingredients.split('\n') %}
+                        <li>{{ ingredient }}</li>  <!-- Display each ingredient as a list item -->
+                    {% endfor %}
+                </ul>
+                <h2>Instructions:</h2>  <!-- Subheading for instructions -->
+                <!-- Display instructions as numbered bullet points -->
+                <ol>
+                    {% for step in recipe.instructions.split('\n') %}
+                        <li>{{ step }}</li>  <!-- Display each step as a numbered list item -->
+                    {% endfor %}
+                </ol>
+                <div class="recipe-buttons">
+                    <a href="/recipes" class="button">Back to Recipes</a>  <!-- Link to go back to all recipes styled as a button -->
+                </div>
+            </div>
+        </div>
     </div>
-    <p><a href="/recipes" class="button">Back to Recipes</a></p>  <!-- Link to go back to all recipes styled as a button -->
 </body>
 </html>
-
-
-
