@@ -59,9 +59,9 @@
     <ul>
         {% for recipe in recipes %}  <!-- Loop through each recipe -->
         <li>
-            <a href="/recipe/{{ loop.index0 }}">{{ recipe.name }}</a> -  <!-- Link to view recipe details -->
-            <a href="/edit_recipe/{{ loop.index0 }}">Edit</a> |  <!-- Link to edit recipe -->
-            <a href="/remove_recipe/{{ loop.index0 }}">Remove</a>  <!-- Link to remove recipe -->
+            <a href="/recipe/{{ recipe.id }}">{{ recipe.name }}</a> -  <!-- Link to view recipe details -->
+            <a href="/edit_recipe/{{ recipe.id }}">Edit</a> |  <!-- Link to edit recipe -->
+            <a href="/remove_recipe/{{ recipe.id }}">Remove</a>  <!-- Link to remove recipe -->
         </li>
         {% endfor %}
     </ul>
@@ -79,3 +79,4 @@
     </script>
 </body>
 </html>
+
