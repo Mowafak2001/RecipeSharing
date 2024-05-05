@@ -1,13 +1,60 @@
-{% include 'index.html' %}  <!-- Including index.html template -->
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">  <!-- Declaring character set -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">  <!-- Setting viewport for responsive design -->
-    <title>Search Results</title>  <!-- Title of the page -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,700&display=swap" rel="stylesheet">
+    <style>
+        /* Unique styles for the search results page */
+        .search_results {
+            background: #f4f4f4;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .search_results h1 {
+            font-size: 2.5rem;
+            color: #333;
+            margin-bottom: 1rem;
+        }
+
+        .search_results ul {
+            list-style-type: none;
+            padding: 0;
+            margin: 0;
+            text-align: center;
+        }
+
+        .search_results li {
+            background: #fff; /* Default background, will be overridden by JS */
+            width: 100%;
+            max-width: 500px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 1px 1px 2rem rgba(0, 0, 0, 0.3);
+            overflow: hidden;
+            padding: 2rem;
+        }
+
+        .search_results a {
+            color: #007bff;
+            text-decoration: none;
+            transition: color 0.2s ease-in;
+        }
+
+        .search_results a:hover {
+            color: #0056b3;
+        }
+
+        .search_results p {
+            margin-top: 20px;
+        }
+    </style>
 </head>
-<body>
+<body class="search_results">
     <h1>Search Results for "{{ query }}"</h1>  <!-- Heading showing search query -->
     <ul>
         {% for recipe in recipes %}  <!-- Loop through each recipe -->
@@ -19,6 +66,16 @@
         {% endfor %}
     </ul>
     <p><a href="/recipes">Back to All Recipes</a></p>  <!-- Link to go back to all recipes -->
+
+    <script>
+        // JavaScript for random card colors
+        document.addEventListener("DOMContentLoaded", function() {
+            const colors = ['#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', '#ffc6ff'];
+            document.querySelectorAll('li').forEach(function(card) {
+                const colorIndex = Math.floor(Math.random() * colors.length);
+                card.style.backgroundColor = colors[colorIndex];
+            });
+        });
+    </script>
 </body>
 </html>
-
