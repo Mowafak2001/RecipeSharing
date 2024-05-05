@@ -50,7 +50,7 @@ def login_required(func):
 # Route: Homepage
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('homepage.html')
 
 # Route: Sign In
 @app.route('/signin', methods=['GET', 'POST'])
